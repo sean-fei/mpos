@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mpos.user.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.mpos.user.model.User" >
+        <id     property="userId"           column="USER_ID"      jdbcType="VARCHAR" />
+        <result property="userName"         column="USER_NAME"    jdbcType="VARCHAR" />
+        <result property="userSex"          column="USER_SEX"     jdbcType="VARCHAR" />
+        <result property="openId"           column="OPEN_ID"      jdbcType="VARCHAR"/>
+        <result property="delFlag"          column="DEL_FLAG"     jdbcType="VARCHAR"/>
+        <result property="userAccount"       column="USER_ACCOUNT" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.mpos.user.model.User">
+        INSERT INTO T_USER (USER_ID, USER_NAME, USER_SEX, OPEN_ID, DEL_FLAG, USER_ACCOUNT)
+        VALUES(#{userId}, #{userName}, #{userSex}, #{openId}, #{delFlag}, #{userAccount})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.mpos.user.model.User">
+        UPDATE T_USER
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userName != null and userName != ''">
+                USER_NAME = #{userName},
+            </if>
+            <if test="userSex != null and userSex != ''">
+                USER_SEX = #{userSex},
+            </if>
+            <if test="openId != null and openId != ''">
+                OPEN_ID = #{openId},
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                DEL_FLAG = #{delFlag},
+            </if>
+            <if test="userAccount != null and userAccount != ''">
+                USER_ACCOUNT = #{userAccount},
+            </if>
+        </trim>
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM T_USER WHERE USER_ID = #{userId}
+    </delete>
+
+    <select id="selectByTemplate" parameterType="com.mpos.user.model.User" resultMap="BaseResultMap">
+        SELECT * FROM T_USER
+        <where> 1 = 1
+            <if test="userName != null and userName != ''">
+                AND USER_NAME = #{userName}
+            </if>
+            <if test="userSex != null and userSex != ''">
+                AND USER_SEX = #{userSex}
+            </if>
+            <if test="openId != null and openId != ''">
+                AND OPEN_ID = #{openId}
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                AND DEL_FLAG = #{delFlag}
+            </if>
+            <if test="userAccount != null and userAccount != ''">
+                AND USER_ACCOUNT = #{userAccount}
+            </if>
+        </where>
+    </select>
+
+</mapper>

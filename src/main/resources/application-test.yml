@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    application-display-name: mpos
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 2000
+    accesslog:
+      enabled: true

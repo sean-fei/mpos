@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: false
+
+# 加载mapper.xml
+mybatis:
+  mapper-locations: classpath*:/mybatis/mapper/**Mapper.xml
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+logging:
+  level: 
+    com.mpos.user.mapper: DEBUG
