@@ -9,11 +9,9 @@ server:
       enabled: true
 spring:
   datasource:
-    url: jdbc:mysql://39.106.199.162:3306/bmps?characterEncoding=utf8&useSSL=false
-    username: bmps
-    password: bMps#89sd!Kl@6
+    url: #您的数据库URL
+    username: # 数据库账户
+    password: # 数据库密码
     driver-class-name: com.mysql.jdbc.Driver
 
-#mybatis:
-#  mapper-locations: classpath:mybatis/mapper/*.xml
 
